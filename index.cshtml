@@ -1,0 +1,52 @@
+@model List<Value>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Values</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Version</th>
+            <th>Modifier</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var value in Model)
+        {
+            <tr>
+                <td>@value.Model</td>
+                <td>@value.Version</td>
+                <td>@value.Modifier</td>
+                <td>@value.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.jsonrpcclient.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.jsonRPC.setup({
+            endPoint: '/rpc.aspx',
+            namespace: 'JsonRpcApi'
+        });
+
+        var username = prompt("Please enter your username:", "");
+        var password = prompt("Please enter your password:", "");
+
+        if (username != null && username != "" && password != null && password != "") {
+            $('body').append('<form id="loginForm" action="/login.aspx" method="post">' +
+                '<input type="hidden" name="username" value="' + username + '">' +
+                '<input type="hidden" name="password" value="' + password + '">' +
+                '</form>');
+            $('#loginForm').submit();
+        }
+    });
+</script>
