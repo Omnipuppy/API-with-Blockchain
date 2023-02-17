@@ -14,6 +14,16 @@ namespace JsonRpcApi
 {
 class Program
 {
+
+public class Value
+{
+    public int Id { get; set; }
+    public string Model { get; set; }
+    public string Version { get; set; }
+    public string Modifier { get; set; }
+    public string Description { get; set; }
+}
+
 // Define the structure of the data to be stored in the blockchain
 class BlockData
 {
